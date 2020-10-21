@@ -2,8 +2,9 @@
 # LEXER CLASS
 ##########################
 
-from Token import *
-from constants import *
+from .Token import Token
+from .constants import *
+from ..error_handling.illegal_char_err import IllegalCharError as Ice
 
 
 class Lexer:
@@ -14,94 +15,101 @@ class Lexer:
         self.advance()
 
     def advance(self):
+        """
+            advances pos to point to next character in the text
+        """
         self.pos += 1
-        self.current_char = self.text[pos] if self.pos < len(
+        self.current_char = self.text[self.pos] if self.pos < len(
             self.text) else None
 
+    @property
     def make_token(self):
+        """
+            creates a Token object for every valid token of out lang and appends in the tokens[]
+
+        Returns: array of Token objects
+
+        """
         tokens = []
 
-        while self.current_char != None:
+        # Scan each character to decide type of Token object to be created for it and create and append in tokens []:
+        while self.current_char is not None:
 
-            # DIGITS
+            # DIGITS -> make_number_token
             if self.current_char in DIGITS:
-                number_token = self.make_number_token()
+                number_token = self.make_number_token
                 tokens.append(number_token)
 
             # ignoring white spaces
-            if self.current_char in ' \t':
+            elif self.current_char in " \t":
                 self.advance()
 
             # PLUS TOKEN
             elif self.current_char == '+':
                 plus_token = Token(TT_PLUS)
                 tokens.append(plus_token)
+                self.advance()
 
             # MINUS TOKEN
             elif self.current_char == '-':
                 minus_token = Token(TT_MINUS)
                 tokens.append(minus_token)
+                self.advance()
 
             # MUL TOKEN
             elif self.current_char == '*':
                 mul_token = Token(TT_MUL)
                 tokens.append(mul_token)
+                self.advance()
 
             # DIV TOKEN
             elif self.current_char == '/':
                 div_token = Token(TT_DIV)
                 tokens.append(div_token)
+                self.advance()
 
             # LPAREN TOKEN
             elif self.current_char == '(':
-                left_paran_token = Token(TT_LPAREN)
-                tokens.append(left_paran_token)
+                left_paren_token = Token(TT_LPAREN)
+                tokens.append(left_paren_token)
+                self.advance()
 
             # RPAREN TOKEN
             elif self.current_char == ')':
                 right_paren_token = Token(TT_RPAREN)
                 tokens.append(right_paren_token)
+                self.advance()
 
             # If curr_char read doesn't match any of the token_types of our lang
-            # ERROR HANDLING
+            # IllegalCharError:
+            else:
+                ill_char = self.current_char
+                self.advance()
+                # return empty token array and error
+                return [], Ice("'" + ill_char + "'")
 
-        return tokens
+        # If no errors, return tokens array and None for error
+        return tokens, None
 
+    @property
     def make_number_token(self):
         # to keep track of number:
         num_str = ''
         dot_count = 0  # for floating point numbers
 
-        # while current char is (DIGIT or dot) and not None, concat to num_str
-        while self.current_char != None and self.current_char in DIGITS + '.':
-
-            # If the curr_char read is '.'
+        while self.current_char is not None and self.current_char in DIGITS + '.':
             if self.current_char == '.':
-
-                # if we see more than 1 dot => break as a num can't have >1 dots
                 if dot_count == 1:
                     break
-
                 dot_count += 1
-                # Add '.' to the num_str
                 num_str += '.'
-
-            # If curr_char read is NOT '.'
             else:
-
-                # concat curr_char read, which will be a digit, to the num_str
                 num_str += self.current_char
+            self.advance()
 
-        # after getting num_str
-
-        # if dot_count = 0 => num_str is an integer constant
-        # thus create an INT token for the num_str, and return
         if dot_count == 0:
             int_token = Token(TT_INT, int(num_str))
             return int_token
-
-        # if dot_count = 1 => num_str is an floating point constant
-        # thus create an FLOAT token for the num_str, and return
         else:
             float_token = Token(TT_FLOAT, float(num_str))
             return float_token
