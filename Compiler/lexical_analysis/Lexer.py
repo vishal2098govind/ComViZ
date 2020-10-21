@@ -4,13 +4,15 @@
 
 from .Token import Token
 from .constants import *
+from .position import Position
 from ..error_handling.illegal_char_err import IllegalCharError as Ice
 
 
 class Lexer:
-    def __init__(self, text):
+    def __init__(self, file_name, text):
+        self.file_name = file_name
         self.text = text
-        self.pos = -1
+        self.pos = Position(-1, 0, 1, file_name, text)
         self.current_char = None
         self.advance()
 
@@ -18,11 +20,9 @@ class Lexer:
         """
             advances pos to point to next character in the text
         """
-        self.pos += 1
-        self.current_char = self.text[self.pos] if self.pos < len(
-            self.text) else None
+        self.pos.advance(self.current_char)
+        self.current_char = self.text[self.pos.index] if self.pos.index < len(self.text) else None
 
-    @property
     def make_token(self):
         """
             creates a Token object for every valid token of out lang and appends in the tokens[]
@@ -83,10 +83,13 @@ class Lexer:
             # If curr_char read doesn't match any of the token_types of our lang
             # IllegalCharError:
             else:
+
+                pos_start = self.pos.copy() # get current Position object
+
                 ill_char = self.current_char
                 self.advance()
                 # return empty token array and error
-                return [], Ice("'" + ill_char + "'")
+                return [], Ice(pos_start=pos_start, pos_end=self.pos, err_details="'" + ill_char + "'")
 
         # If no errors, return tokens array and None for error
         return tokens, None
