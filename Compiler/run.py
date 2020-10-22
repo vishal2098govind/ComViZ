@@ -1,4 +1,4 @@
-from Compiler.lexical_analysis.Lexer import Lexer
+from Compiler.lexical_analyzer.Lexer import Lexer
 
 
 def run(file_name, text):

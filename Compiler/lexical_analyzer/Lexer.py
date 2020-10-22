@@ -5,7 +5,7 @@
 from .Token import Token
 from .constants import *
 from .position import Position
-from ..error_handling.illegal_char_err import IllegalCharError as Ice
+from Compiler.error_handler.illegal_char_err import IllegalCharError as Ice
 
 
 class Lexer:

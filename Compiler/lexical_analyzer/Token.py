@@ -8,7 +8,7 @@ class Token:
         self.value = value
 
     def __repr__(self):
-        if self.value != None:
+        if self.value is not None:
             return f'{self.type}: {self.value}'
         else:
             return f'{self.type}'
