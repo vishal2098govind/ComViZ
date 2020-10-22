@@ -19,21 +19,25 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arithmetic.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/error_handling/Error.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/Error.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/error_handling/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/error_handling/illegal_char_err.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/illegal_char_err.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analysis/Lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/Lexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analysis/Token.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/Token.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analysis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analysis/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analysis/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/position.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/Lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/shell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,18 +58,24 @@
     <option name="projectConfigVersion" value="2" />
   </component>
   <component name="ProjectId" id="1jAMopQykfKMqsptCouT4rVK02F" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Compiler/lexer" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GeeK\ComViz\Compiler\lexer" />
+      <recent name="D:\GeeK\ComViz\Compiler\error_handling" />
       <recent name="D:\GeeK\ComViz\Compiler" />
     </key>
   </component>
@@ -122,6 +132,17 @@
                   <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
             </State>
           </value>
         </entry>
@@ -129,7 +150,12 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myShow1" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -137,37 +163,65 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="361" y="90" width="814" height="729" key="#Intentions/0.0.1536.864@0.0.1536.864" timestamp="1603314525164" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603324984564">
+    <state x="1106" y="370" width="349" height="494" key="#xdebugger.XInspectDialog" timestamp="1603369741268">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603324984564" />
-    <state width="1321" height="307" key="GridCell.Tab.0.bottom" timestamp="1603324050409">
+    <state x="1106" y="370" width="349" height="494" key="#xdebugger.XInspectDialog/0.0.1536.864@0.0.1536.864" timestamp="1603369741268" />
+    <state x="93" y="93" width="1350" height="678" key="DiffContextDialog" timestamp="1603338180878">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1321" height="307" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603324050409" />
-    <state width="1321" height="307" key="GridCell.Tab.0.center" timestamp="1603324050409">
+    <state x="93" y="93" width="1350" height="678" key="DiffContextDialog/0.0.1536.864@0.0.1536.864" timestamp="1603338180878" />
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603337726883">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1321" height="307" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603324050409" />
-    <state width="1321" height="307" key="GridCell.Tab.0.left" timestamp="1603324050409">
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603337726883" />
+    <state width="1493" height="106" key="GridCell.Tab.0.bottom" timestamp="1603370405998">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1321" height="307" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603324050409" />
-    <state width="1321" height="307" key="GridCell.Tab.0.right" timestamp="1603324050409">
+    <state width="1493" height="106" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603370405998" />
+    <state width="1493" height="106" key="GridCell.Tab.0.center" timestamp="1603370405997">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1321" height="307" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603324050409" />
-    <state x="417" y="66" key="SettingsEditor" timestamp="1603323522532">
+    <state width="1493" height="106" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603370405997" />
+    <state width="1493" height="106" key="GridCell.Tab.0.left" timestamp="1603370405995">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="417" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1603323522532" />
+    <state width="1493" height="106" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603370405995" />
+    <state width="1493" height="106" key="GridCell.Tab.0.right" timestamp="1603370405997">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="106" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603370405997" />
+    <state width="625" height="735" key="GridCell.Tab.1.bottom" timestamp="1603370088545">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="625" height="735" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603370088545" />
+    <state width="625" height="735" key="GridCell.Tab.1.center" timestamp="1603370088545">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="625" height="735" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603370088545" />
+    <state width="625" height="735" key="GridCell.Tab.1.left" timestamp="1603370088544">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="625" height="735" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603370088544" />
+    <state width="625" height="735" key="GridCell.Tab.1.right" timestamp="1603370088545">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="625" height="735" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603370088545" />
+    <state x="417" y="66" key="SettingsEditor" timestamp="1603344510025">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="417" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1603344510025" />
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603341295669">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1603341295669" />
     <state x="541" y="306" width="609" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1603313214763">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="541" y="306" width="609" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.864@0.0.1536.864" timestamp="1603313214763" />
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603320481929">
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603345045003">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603320481929" />
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603345045003" />
   </component>
 </project>
