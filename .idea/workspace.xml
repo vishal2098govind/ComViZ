@@ -30,14 +30,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arithmetic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/error_handler/invalid_syntax_err.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/error_handler/string_with_arrows.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser_results.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/Lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/error_handler/Error.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/error.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/error_handler/illegal_char_err.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/illegal_char_err.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/Token.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/Token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/position.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/shell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,38 +179,38 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603337726883" />
-    <state width="1493" height="106" key="GridCell.Tab.0.bottom" timestamp="1603370405998">
+    <state width="724" height="259" key="GridCell.Tab.0.bottom" timestamp="1603381295068">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="106" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603370405998" />
-    <state width="1493" height="106" key="GridCell.Tab.0.center" timestamp="1603370405997">
+    <state width="724" height="259" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603381295068" />
+    <state width="724" height="259" key="GridCell.Tab.0.center" timestamp="1603381295067">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="106" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603370405997" />
-    <state width="1493" height="106" key="GridCell.Tab.0.left" timestamp="1603370405995">
+    <state width="724" height="259" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603381295067" />
+    <state width="724" height="259" key="GridCell.Tab.0.left" timestamp="1603381295066">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="106" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603370405995" />
-    <state width="1493" height="106" key="GridCell.Tab.0.right" timestamp="1603370405997">
+    <state width="724" height="259" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603381295066" />
+    <state width="724" height="259" key="GridCell.Tab.0.right" timestamp="1603381295068">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="106" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603370405997" />
-    <state width="625" height="735" key="GridCell.Tab.1.bottom" timestamp="1603370088545">
+    <state width="724" height="259" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603381295068" />
+    <state width="388" height="735" key="GridCell.Tab.1.bottom" timestamp="1603374267062">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="625" height="735" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603370088545" />
-    <state width="625" height="735" key="GridCell.Tab.1.center" timestamp="1603370088545">
+    <state width="388" height="735" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603374267062" />
+    <state width="388" height="735" key="GridCell.Tab.1.center" timestamp="1603374267062">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="625" height="735" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603370088545" />
-    <state width="625" height="735" key="GridCell.Tab.1.left" timestamp="1603370088544">
+    <state width="388" height="735" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603374267062" />
+    <state width="388" height="735" key="GridCell.Tab.1.left" timestamp="1603374267061">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="625" height="735" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603370088544" />
-    <state width="625" height="735" key="GridCell.Tab.1.right" timestamp="1603370088545">
+    <state width="388" height="735" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603374267061" />
+    <state width="388" height="735" key="GridCell.Tab.1.right" timestamp="1603374267062">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="625" height="735" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603370088545" />
+    <state width="388" height="735" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603374267062" />
     <state x="417" y="66" key="SettingsEditor" timestamp="1603344510025">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -219,9 +223,9 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="541" y="306" width="609" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.864@0.0.1536.864" timestamp="1603313214763" />
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603345045003">
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603372375518">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603345045003" />
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603372375518" />
   </component>
 </project>

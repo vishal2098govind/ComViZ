@@ -12,7 +12,7 @@ class Lexer:
     def __init__(self, file_name, text):
         self.file_name = file_name
         self.text = text
-        self.pos = Position(-1, 0, 1, file_name, text)
+        self.pos = Position(-1, 0, -1, file_name, text)
         self.current_char = None
         self.advance()
 
@@ -37,7 +37,7 @@ class Lexer:
 
             # DIGITS -> make_number_token
             if self.current_char in DIGITS:
-                number_token = self.make_number_token
+                number_token = self.make_number_token()
                 tokens.append(number_token)
 
             # ignoring white spaces
@@ -46,37 +46,37 @@ class Lexer:
 
             # PLUS TOKEN
             elif self.current_char == '+':
-                plus_token = Token(TT_PLUS)
+                plus_token = Token(TT_PLUS, pos_start=self.pos)
                 tokens.append(plus_token)
                 self.advance()
 
             # MINUS TOKEN
             elif self.current_char == '-':
-                minus_token = Token(TT_MINUS)
+                minus_token = Token(TT_MINUS, pos_start=self.pos)
                 tokens.append(minus_token)
                 self.advance()
 
             # MUL TOKEN
             elif self.current_char == '*':
-                mul_token = Token(TT_MUL)
+                mul_token = Token(TT_MUL, pos_start=self.pos)
                 tokens.append(mul_token)
                 self.advance()
 
             # DIV TOKEN
             elif self.current_char == '/':
-                div_token = Token(TT_DIV)
+                div_token = Token(TT_DIV, pos_start=self.pos)
                 tokens.append(div_token)
                 self.advance()
 
             # LPAREN TOKEN
             elif self.current_char == '(':
-                left_paren_token = Token(TT_LPAREN)
+                left_paren_token = Token(TT_LPAREN, pos_start=self.pos)
                 tokens.append(left_paren_token)
                 self.advance()
 
             # RPAREN TOKEN
             elif self.current_char == ')':
-                right_paren_token = Token(TT_RPAREN)
+                right_paren_token = Token(TT_RPAREN, pos_start=self.pos)
                 tokens.append(right_paren_token)
                 self.advance()
 
@@ -84,7 +84,7 @@ class Lexer:
             # IllegalCharError:
             else:
 
-                pos_start = self.pos.copy() # get current Position object
+                pos_start = self.pos.copy()  # get current Position object
 
                 ill_char = self.current_char
                 self.advance()
@@ -92,14 +92,14 @@ class Lexer:
                 return [], Ice(pos_start=pos_start, pos_end=self.pos, err_details="'" + ill_char + "'")
 
         # If no errors, return tokens array and None for error
+        tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
 
-    @property
     def make_number_token(self):
         # to keep track of number:
         num_str = ''
         dot_count = 0  # for floating point numbers
-
+        pos_start = self.pos.copy()
         while self.current_char is not None and self.current_char in DIGITS + '.':
             if self.current_char == '.':
                 if dot_count == 1:
@@ -111,8 +111,8 @@ class Lexer:
             self.advance()
 
         if dot_count == 0:
-            int_token = Token(TT_INT, int(num_str))
+            int_token = Token(TT_INT, int(num_str), pos_start=pos_start, pos_end=self.pos)
             return int_token
         else:
-            float_token = Token(TT_FLOAT, float(num_str))
+            float_token = Token(TT_FLOAT, float(num_str), pos_start=pos_start, pos_end=self.pos)
             return float_token

@@ -1,4 +1,4 @@
-from .Error import Error
+from .error import Error
 
 
 class IllegalCharError(Error):

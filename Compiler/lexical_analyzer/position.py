@@ -15,13 +15,15 @@ class Position():
         self.file_name = file_name
         self.file_text = file_text
 
-    def advance(self, current_char):
+    def advance(self, current_char=None):
         self.index += 1
         self.col_no += 1
 
         if current_char == '\n':
             self.line_no += 1
             self.col_no = 0
+
+        return self
 
     def copy(self):
         return Position(self.index, self.line_no, self.col_no, self.file_name, self.file_text)
