@@ -2,7 +2,7 @@
 # LEXER CLASS
 ##########################
 
-from .Token import Token
+from .token import Token
 from .constants import *
 from .position import Position
 from Compiler.error_handler.illegal_char_err import IllegalCharError as Ice
@@ -91,7 +91,7 @@ class Lexer:
                 # return empty token array and error
                 return [], Ice(pos_start=pos_start, pos_end=self.pos, err_details="'" + ill_char + "'")
 
-        # If no errors, return tokens array and None for error
+        # If no errors, return tokens array and None for error and add EOF token in the end of list of tokens
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
 
