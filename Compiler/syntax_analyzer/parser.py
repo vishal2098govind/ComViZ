@@ -1,6 +1,6 @@
 from Compiler.error_handler.invalid_syntax_err import InvalidSyntaxError
 from Compiler.lexical_analyzer.constants import *
-from Compiler.syntax_analyzer.nodes import NumberNode, BinaryOperationNode
+from Compiler.syntax_analyzer.nodes import NumberNode, BinaryOperationNode, UnaryOperationNode
 from Compiler.syntax_analyzer.parser_results import ParseResult
 
 
@@ -25,7 +25,7 @@ class Parser:
         return self.curr_token
 
     # Parser for Arithmetic Expression Grammar
-    # E -> l_T ((PLUS or MINUS) r_T)* , T -> l_F ( (MUL or DIV) r_F)* , F -> INT | FLOAT
+    # E -> l_T ((PLUS or MINUS) r_T)* , T -> l_F ( (MUL or DIV) r_F)* , F -> INT | FLOAT | + F | - F | ( E )
 
     # For each of the non-terminal , we define a method
     def arithmetic_expression(self):
@@ -44,18 +44,60 @@ class Parser:
 
     def factor(self):
         """
-        factor -> INT Token | FLOAT Token
+        factor -> INT Token | FLOAT Token | PLUS factor | MINUS factor | ( arith_expression )
 
-        Returns: If Token Type TT of the Token object with self.curr_token is TT_INT or TT_FLOAT , return a NumberNode
-        object of that token
+        Returns:
+                for factor-> INT | FLOAT:
+                If  Token Type TT of the Token object with self.curr_token is TT_INT or TT_FLOAT , return a NumberNode
+                object of that token
+
+                for factor-> PLUS right_factor| MINUS right_factor:
+                If curr_token type is TT_PLUS or TT_MINUS => Unary Operation
+                recursive call to self.factor to get NumberNode object of right_factor if right_factor-> INT | FLOAT
+
+                for factor-> ( arith_expression ):
+                If curr_token type is TT_LPAREN , then
+                self.advance_token() , then call to self.arithmetic_expression() to get arith_expression which might
+                return BinaryOperationNode or NumberNode or UnaryOperationNode depending on the type of
+                arith_expression present in the tokens received to parser
 
         """
         result = ParseResult()
         curr_tok = self.curr_token
-        if self.curr_token.type in (TT_INT, TT_FLOAT):
+
+        # for factor -> PLUS right_factor | MINUS right_factor
+        # return UnaryOperationNode(PLUS, right_factor)
+        if self.curr_token.type in (TT_PLUS, TT_MINUS):
+            result.register(self.advance_token())  # register PLUS or MINUS
+            right_factor = result.register(self.factor())  # form right_factor
+            if result.error:
+                return result
+            else:
+                return result.success(UnaryOperationNode(curr_tok, right_factor))
+
+        # for factor -> INT Token | FLOAT Token
+        # return NumberNode(INT|FLOAT)
+        elif self.curr_token.type in (TT_INT, TT_FLOAT):
             result.register(self.advance_token())
             return result.success(NumberNode(num_token=curr_tok))
 
+        # for factor -> ( arith_expression )
+        # return BinaryOperationNode() or UnaryOperationNode() or NumberNode() depending on the type of arith_expression
+        elif curr_tok.type == TT_LPAREN:
+            result.register(self.advance_token())
+            arith_expression = result.register(self.arithmetic_expression())
+
+            if self.curr_token.type == TT_RPAREN:
+                result.register(self.advance_token())
+                return result.success(arith_expression)
+            else:
+                # Syntax Error
+                return result.failure(InvalidSyntaxError(
+                    self.curr_token.pos_start, self.curr_token.pos_end,
+                    "Expected )"
+                ))
+
+        # Syntax Error
         else:
             # if self.curr_token.type is not TT_INT or TT_FLOAT => Syntax Error
             return result.failure(InvalidSyntaxError(
@@ -74,7 +116,7 @@ class Parser:
         # left_node
         result = ParseResult()
         left_node = result.register(rule())  # self.factor or self.term which will return a NumberNode or
-        # BinaryOperationNode
+        # BinaryOperationNode or UnaryOperationNode
         if result.error:
             return result
 

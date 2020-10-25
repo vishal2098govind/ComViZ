@@ -30,3 +30,12 @@ class BinaryOperationNode:
 
     def __repr__(self):
         return f'({self.left_num_node}, {self.op_token}, {self.right_num_node})'
+
+
+class UnaryOperationNode:
+    def __init__(self, op_token, node):
+        self.op_token = op_token
+        self.node = node
+
+    def __repr__(self):
+        return f'({self.op_token}, {self.node})'
