@@ -9,9 +9,11 @@ class Number:
             value: any number
         """
         self.value = value
+        self.pos_start = None
+        self.pos_end = None
         self.set_pos()
 
-    def set_pos(self, pos_start=None,pos_end =None):
+    def set_pos(self, pos_start=None, pos_end=None):
         """
         To indicate position while showing error messages
         Args:
@@ -30,7 +32,7 @@ class Number:
             return Number(value=self.value + other.value)
 
     # When number represented by self is to be subtracted to any other Number object with a number
-    def sub_by(self, other):
+    def subtracted_by(self, other):
         if isinstance(other, Number):
             return Number(value=self.value - other.value)
 

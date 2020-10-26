@@ -140,13 +140,13 @@ class Parser:
         """
         Returns: Abstract syntax Tree
         """
-        abstract_syntax_tree = self.arithmetic_expression()
+        parse_result = self.arithmetic_expression()
 
-        if not abstract_syntax_tree.error and self.curr_token.type != TT_EOF:
-            return abstract_syntax_tree.failure(InvalidSyntaxError(
+        if not parse_result.error and self.curr_token.type != TT_EOF:
+            return parse_result.failure(InvalidSyntaxError(
                 self.curr_token.pos_start,
                 self.curr_token.pos_end,
                 "Expected '+', '-', '*' or '/'"
             ))
 
-        return abstract_syntax_tree
+        return parse_result
