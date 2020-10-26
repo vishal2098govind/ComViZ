@@ -1,16 +1,11 @@
+from Compiler.interpreter.RuntimeResult import RuntimeResult
 from Compiler.interpreter.data_types import Number
 from Compiler.lexical_analyzer.constants import *
 
 
 class Interpreter:
 
-    def visit_child_nodes(self, node, tokens=None):
-
-        if tokens:
-            print('Lexer Output: Tokens')
-            print(tokens)
-            print('Parser Output: Abstract Syntax Tree')
-            print(node)
+    def visit_child_nodes(self, node):
 
         # get method_name to visit child node depending on the type of node
         # If type of node passed is BinaryOperationNode,
@@ -27,30 +22,48 @@ class Interpreter:
     # Define visit method for each of the node type:
     @staticmethod
     def visit_NumberNode(node):
-        return Number(node.num_token.value).set_pos(node.pos_start, node.pos_end)
+        return RuntimeResult().success(
+            Number(node.num_token.value).set_pos(node.pos_start, node.pos_end)
+        )
 
     def visit_BinaryOperationNode(self, node):
 
-        left = self.visit_child_nodes(node.left_num_node)
-        right = self.visit_child_nodes(node.right_num_node)
+        runtime_result = RuntimeResult()
 
+        left = runtime_result.register(self.visit_child_nodes(node.left_num_node))
+        right = runtime_result.register(self.visit_child_nodes(node.right_num_node))
+
+        if runtime_result.error: return runtime_result
         result = None
 
         if node.op_token.type == TT_PLUS:
-            result = left.added_to(right)
+            result, runtime_error = left.added_to(right)
         elif node.op_token.type == TT_MINUS:
-            result = left.subtracted_by(right)
+            result, runtime_error = left.subtracted_by(right)
         elif node.op_token.type == TT_MUL:
-            result = left.multiplied_by(right)
+            result, runtime_error = left.multiplied_by(right)
         elif node.op_token.type == TT_DIV:
-            result = left.divided_by(right)
+            result, runtime_error = left.divided_by(right)
 
-        return result.set_pos(node.pos_start, node.pos_end)
+        if runtime_error:
+            return runtime_result.failure(runtime_error)
+        else:
+            return runtime_result.success(result.set_pos(node.pos_start, node.pos_end))
 
     def visit_UnaryOperationNode(self, node):
-        number = self.visit_child_nodes(node.node)
+        runtime_result = RuntimeResult()
+
+        number = runtime_result.register(self.visit_child_nodes(node.node))
+
+        if runtime_result.error:
+            return runtime_result
+
+        runtime_error = None
 
         if node.op_token.type == TT_MINUS:
-            number = number.multiplied_by(Number(-1))
+            number, runtime_error = number.multiplied_by(Number(-1))
 
-        return number.set_pos(node.pos_start, node.pos_end)
+        if runtime_error:
+            return runtime_result.failure(runtime_error)
+        else:
+            return runtime_result.success(number.set_pos(node.pos_start, node.pos_end))

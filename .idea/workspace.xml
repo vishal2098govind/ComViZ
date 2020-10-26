@@ -30,22 +30,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Compiler/interpreter/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visualiser/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visualiser/ast.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visualiser/visualise_ast.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arith_ast.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/error_handler/runtime_err.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/interpreter/RuntimeResult.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/error_handler/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arith_ast.png" beforeDir="false" afterPath="$PROJECT_DIR$/arith_ast.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/shell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -230,38 +221,38 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1537" height="807" key="GridCell.Tab.-1.right/0.0.1536.864@0.0.1536.864" timestamp="1603643757106" />
-    <state width="484" height="735" key="GridCell.Tab.0.bottom" timestamp="1603735379509">
+    <state width="438" height="735" key="GridCell.Tab.0.bottom" timestamp="1603740057827">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="484" height="735" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603735379509" />
-    <state width="484" height="735" key="GridCell.Tab.0.center" timestamp="1603735379508">
+    <state width="438" height="735" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603740057827" />
+    <state width="438" height="735" key="GridCell.Tab.0.center" timestamp="1603740057827">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="484" height="735" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603735379508" />
-    <state width="484" height="735" key="GridCell.Tab.0.left" timestamp="1603735379508">
+    <state width="438" height="735" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603740057827" />
+    <state width="438" height="735" key="GridCell.Tab.0.left" timestamp="1603740057827">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="484" height="735" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603735379508" />
-    <state width="484" height="735" key="GridCell.Tab.0.right" timestamp="1603735379508">
+    <state width="438" height="735" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603740057827" />
+    <state width="438" height="735" key="GridCell.Tab.0.right" timestamp="1603740057827">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="484" height="735" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603735379508" />
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.bottom" timestamp="1603698701280">
+    <state width="438" height="735" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603740057827" />
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.bottom" timestamp="1603739875223">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603698701280" />
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.center" timestamp="1603698701280">
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603739875223" />
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.center" timestamp="1603739875223">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603698701280" />
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.left" timestamp="1603698701280">
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603739875223" />
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.left" timestamp="1603739875223">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603698701280" />
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.right" timestamp="1603698701280">
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603739875223" />
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.right" timestamp="1603739875223">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="762" height="243" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603698701280" />
+    <state x="0" y="0" width="569" height="477" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603739875223" />
     <state x="-6" y="0" width="767" height="804" key="GridCell.Tab.2.bottom" timestamp="1603643982133">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -278,10 +269,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="-6" y="0" width="767" height="804" key="GridCell.Tab.2.right/0.0.1536.864@0.0.1536.864" timestamp="1603643982133" />
-    <state x="417" y="66" key="SettingsEditor" timestamp="1603680560658">
+    <state x="417" y="66" key="SettingsEditor" timestamp="1603737174582">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="417" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1603680560658" />
+    <state x="417" y="66" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1603737174582" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1603649433910">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

@@ -1,7 +1,6 @@
 from Compiler.interpreter.interpreter import Interpreter
 from Compiler.lexical_analyzer.lexer import Lexer
 from Compiler.syntax_analyzer.parser import Parser
-from Visualiser.visualise_ast import visualize
 
 
 def run(file_name, text):
@@ -35,6 +34,9 @@ def run(file_name, text):
 
     # Interpreter
     interpreter = Interpreter()
-    result = interpreter.visit_child_nodes(node=abstract_syntax_tree_root, tokens=tokens)
-    visualize(node=abstract_syntax_tree_root)
-    return None, None, None, result
+    result = interpreter.visit_child_nodes(node=abstract_syntax_tree_root)
+
+    if not result.error:
+        return tokens, abstract_syntax_tree_root, None, result.value
+
+    return tokens, abstract_syntax_tree_root, result.error, None

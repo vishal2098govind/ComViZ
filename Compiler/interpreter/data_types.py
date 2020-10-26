@@ -1,3 +1,5 @@
+from Compiler.error_handler.runtime_err import InterpreterError
+
 class Number:
     """
     To store numbers and operating on them with other numbers
@@ -29,22 +31,27 @@ class Number:
     # When number represented by self is to be added to any other Number object with a number
     def added_to(self, other):
         if isinstance(other, Number):
-            return Number(value=self.value + other.value)
+            return Number(value=self.value + other.value), None
 
     # When number represented by self is to be subtracted to any other Number object with a number
     def subtracted_by(self, other):
         if isinstance(other, Number):
-            return Number(value=self.value - other.value)
+            return Number(value=self.value - other.value), None
 
     # When number represented by self is to be added to any other Number object with a number
     def multiplied_by(self, other):
         if isinstance(other, Number):
-            return Number(value=self.value * other.value)
+            return Number(value=self.value * other.value), None
 
     # When number represented by self is to be added to any other Number object with a number
     def divided_by(self, other):
         if isinstance(other, Number):
-            return Number(value=self.value / other.value)
+            if other.value == 0:
+                return None, InterpreterError(
+                    other.pos_start, other.pos_end,
+                    'Division by zero'
+                )
+            return Number(value=self.value / other.value), None
 
     def __repr__(self):
         return str(self.value)
