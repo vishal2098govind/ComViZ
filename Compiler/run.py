@@ -9,7 +9,7 @@ def run(file_name, text):
         file_name: File name where HLL program is written
         text: High Level Language
 
-    Returns: ( tokens, abstract_syn_tree, error )
+    Returns: ( tokens, abstract_syn_tree, error, runtime_result )
     """
     # Generate Tokens
     lexer = Lexer(file_name, text)
@@ -23,7 +23,7 @@ def run(file_name, text):
     parser = Parser(token_list=tokens)
 
     # Generate Abstract Syntax Tree for Arithmetic Expression
-    parse_result = parser.arithmetic_expression_parser()
+    parse_result = parser.arith_exp_parser()
 
     syntax_error = parse_result.error
     abstract_syntax_tree_root = parse_result.node
@@ -32,11 +32,11 @@ def run(file_name, text):
         # if syntax_error, interpreter will not be used and directly error will be displayed
         return tokens, abstract_syntax_tree_root, syntax_error, None
 
-    # Interpreter
+    # Evaluate the abstract syntax tree obtained using interpreter
     interpreter = Interpreter()
-    result = interpreter.visit_child_nodes(node=abstract_syntax_tree_root)
+    runtime_result = interpreter.evaluate_node(node=abstract_syntax_tree_root)
 
-    if not result.error:
-        return tokens, abstract_syntax_tree_root, None, result.value
+    if not runtime_result.error:
+        return tokens, abstract_syntax_tree_root, None, runtime_result.result
 
-    return tokens, abstract_syntax_tree_root, result.error, None
+    return tokens, abstract_syntax_tree_root, runtime_result.error, None

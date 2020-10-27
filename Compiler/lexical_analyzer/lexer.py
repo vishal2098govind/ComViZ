@@ -68,6 +68,12 @@ class Lexer:
                 tokens.append(div_token)
                 self.advance()
 
+            # POW TOKEN
+            elif self.current_char == '^':
+                div_token = Token(TT_POW, pos_start=self.pos)
+                tokens.append(div_token)
+                self.advance()
+
             # LPAREN TOKEN
             elif self.current_char == '(':
                 left_paren_token = Token(TT_LPAREN, pos_start=self.pos)

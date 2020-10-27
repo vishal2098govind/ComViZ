@@ -9,7 +9,7 @@ class NumberNode:
             num_token: Token object of TT_INT or TT_FLOAT
         """
         self.num_token = num_token
-        self.pos_start = num_token.pos_start
+        self.pos_start = self.num_token.pos_start
         self.pos_end = num_token.pos_end
 
     def __repr__(self):
@@ -23,27 +23,27 @@ class NumberNode:
 
 class BinaryOperationNode:
     """
-    Nodes for representing arithmetic operations +,-,*,/
+        Nodes for representing arithmetic operations +,-,*,/,^
     """
-    def __init__(self, left_num_node, op_token, right_num_node):
-        self.left_num_node = left_num_node
+    def __init__(self, left_node, op_token, right_node):
+        self.left_node = left_node
         self.op_token = op_token
-        self.right_num_node = right_num_node
+        self.right_node = right_node
 
-        self.pos_start = self.left_num_node.pos_start
-        self.pos_end = self.right_num_node.pos_end
+        self.pos_start = self.left_node.pos_start
+        self.pos_end = self.right_node.pos_end
 
     def __repr__(self):
-        return f'({self.left_num_node}, {self.op_token}, {self.right_num_node})'
+        return f'({self.left_node}, {self.op_token}, {self.right_node})'
 
 
 class UnaryOperationNode:
-    def __init__(self, op_token, node):
+    def __init__(self, op_token, right_node):
         self.op_token = op_token
-        self.node = node
+        self.right_node = right_node
 
         self.pos_start = self.op_token.pos_start
-        self.pos_end = self.node.pos_end
+        self.pos_end = self.right_node.pos_end
 
     def __repr__(self):
-        return f'({self.op_token}, {self.node})'
+        return f'({self.op_token}, {self.right_node})'

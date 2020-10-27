@@ -1,20 +1,15 @@
 class ParseResult:
-    """
-    To check for errors while parsing
-    """
-
     def __init__(self):
-        self.error = None
         self.node = None
+        self.error = None
 
-    def register(self, result):
-        if isinstance(result, ParseResult):
-            if result.error:
-                self.error = result.error
-            return result.node
+    def register(self, parse_result):
+        if isinstance(parse_result, ParseResult):
+            if parse_result.error:
+                self.error = parse_result.error
+            return parse_result.node
 
-        # else it should be node
-        return result
+        return parse_result
 
     def success(self, node):
         self.node = node

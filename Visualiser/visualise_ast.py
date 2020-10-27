@@ -11,14 +11,14 @@ def pre_order(node, parent=None):
 
             trace.append(root)
 
-            pre_order(node.left_num_node, parent=root)
+            pre_order(node.left_node, parent=root)
 
-            pre_order(node.right_num_node, parent=root)
+            pre_order(node.right_node, parent=root)
         else:
             if type(node).__name__ == 'UnaryOperationNode':
                 root = Node(node.op_token, parent=parent)
                 trace.append(root)
-                pre_order(node.node, parent=root)
+                pre_order(node.right_node, parent=root)
             elif type(node).__name__ == 'NumberNode':
                 trace.append(Node(name=node.num_token.value, parent=parent))
 

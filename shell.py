@@ -3,7 +3,7 @@ from Visualiser.visualise_ast import visualize
 
 while True:
     text = input('comviz >')
-    tokens, abstract_syntax_tree_root, any_error, interpreter_result = run('<stdin>', text)
+    tokens, abstract_syntax_tree_root, any_error, runtime_result = run('<stdin>', text)
 
     if any_error:
         print(any_error.as_string())
@@ -12,7 +12,7 @@ while True:
         print(tokens)
         print("Parser Output: Abstract Syntax Tree")
         print(abstract_syntax_tree_root)
-        if interpreter_result:
+        if runtime_result:
             print('Interpreter Output: Result')
-            print(interpreter_result)
+            print(runtime_result)
             visualize(node=abstract_syntax_tree_root)
