@@ -5,7 +5,6 @@ Compiler Visualizer
 <<<<<<< HEAD
 
 ## Demo
-[![Demo Video](https://j.gifs.com/JymVGy.gif)](https://www.youtube.com/watch?v=E4tB00eulAE
-||||||| 55b3c32
+[![Demo Video](https://j.gifs.com/JymVGy.gif)](https://www.youtube.com/watch?v=E4tB00eulAE)
 =======
 
