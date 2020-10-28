@@ -30,25 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Compiler/grammars/arith_exp_v3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/interpreter/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/interpreter/symbol_table.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/visualise_parser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visualiser/arith_ast.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visualiser/arith_pt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/error_handler/runtime_err.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/error_handler/runtime_err.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visualiser/visualise_ast.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visualiser/visualise_ast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visualiser/visualise_pt.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visualiser/visualise_pt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arith_pt.png" beforeDir="false" afterPath="$PROJECT_DIR$/arith_pt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/shell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
