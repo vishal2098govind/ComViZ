@@ -1,6 +1,12 @@
+from Compiler.interpreter.context import Context
+from Compiler.interpreter.data_types import Number
 from Compiler.interpreter.interpreter import Interpreter
+from Compiler.interpreter.symbol_table import SymbolTable
 from Compiler.lexical_analyzer.lexer import Lexer
 from Compiler.syntax_analyzer.parser import Parser
+
+global_symbol_table = SymbolTable()
+global_symbol_table.set_var_value("null", Number(0))
 
 
 def run(file_name, text):
@@ -34,7 +40,15 @@ def run(file_name, text):
 
     # Evaluate the abstract syntax tree obtained using interpreter
     interpreter = Interpreter()
-    runtime_result = interpreter.evaluate_node(node=abstract_syntax_tree_root)
+
+    # global context:
+    global_context = Context(
+            curr_context_name='<program>',
+            parent_context_name=None,
+            context_change_pos=None
+        )
+    global_context.symbol_table=global_symbol_table
+    runtime_result = interpreter.evaluate_node(node=abstract_syntax_tree_root, context=global_context)
 
     if not runtime_result.error:
         return tokens, abstract_syntax_tree_root, None, runtime_result.result

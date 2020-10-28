@@ -14,6 +14,8 @@ class Number:
         self.value = value
         self.pos_start = None
         self.pos_end = None
+        self.context = None
+        self.set_context()
         self.set_pos()
 
     def set_pos(self, pos_start=None, pos_end=None):
@@ -39,12 +41,12 @@ class Number:
     # When number represented by self is to be subtracted to any other Number object with a number
     def subtracted_by(self, other_operand):
         if isinstance(other_operand, Number):
-            return Number(value=self.value - other_operand.value), None
+            return Number(value=self.value - other_operand.value).set_context(context=self.context), None
 
     # When number represented by self is to be added to any other Number object with a number
     def multiplied_by(self, other_operand):
         if isinstance(other_operand, Number):
-            return Number(value=self.value * other_operand.value), None
+            return Number(value=self.value * other_operand.value).set_context(context=self.context), None
 
     # When number represented by self is to be added to any other Number object with a number
     def divided_by(self, other_operand):
@@ -52,14 +54,19 @@ class Number:
             if other_operand.value == 0:
                 return None, InterpreterError(
                     other_operand.pos_start, other_operand.pos_end,
-                    'Division by zero'
+                    'Division by zero',
+                    context=self.context
                 )
-            return Number(value=self.value / other_operand.value), None
+            return Number(value=self.value / other_operand.value).set_context(context=self.context), None
 
     # When number represented by self is to be raised to any other Number object with a number
     def raised_to(self, other_operand):
         if isinstance(other_operand, Number):
-            return Number(value=self.value**other_operand.value), None
+            return Number(value=self.value**other_operand.value).set_context(context=self.context), None
 
     def __repr__(self):
         return str(self.value)
+
+    def set_context(self, context=None):
+        self.context = context
+        return self

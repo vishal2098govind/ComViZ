@@ -47,3 +47,26 @@ class UnaryOperationNode:
 
     def __repr__(self):
         return f'({self.op_token}, {self.right_node})'
+
+
+class VariableAccessNode:
+    def __init__(self, var_name_token):
+        self.var_name_token = var_name_token
+
+        self.pos_start = self.var_name_token.pos_start
+        self.pos_end = self.var_name_token.pos_end
+
+    def __repr__(self):
+        return f'{self.var_name_token}'
+
+
+class VariableAssignNode:
+    def __init__(self, var_name_token, var_value_node):
+        self.var_name_token = var_name_token
+        self.var_value_node = var_value_node
+
+        self.pos_start = self.var_name_token.pos_start
+        self.pos_end = self.var_value_node.pos_end
+
+    def __repr__(self):
+        return f'{self.var_name_token} = {self.var_value_node}'

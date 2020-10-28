@@ -26,13 +26,13 @@ def pre_order(node, parent=None):
                 visualize_ast(trace[0])
 
 
-def visualize_ast(node):
-    pre_order(node)
+def visualize_ast(node=None):
+    if node:
+        pre_order(node)
 
-    global trace
+        global trace
 
-    for pre, fill, node in RenderTree(trace[0]):
-        print(f'{pre}{node.name}')
-
-    UniqueDotExporter(trace[0]).to_picture("arith_ast.png")
-    Image.open(rf'D:/GeeK/ComViz/arith_ast.png').show()
+        for pre, fill, node in RenderTree(trace[0]):
+            print(f'{pre}{node.name}')
+        UniqueDotExporter(trace[0]).to_picture("arith_ast.png")
+        Image.open(rf'D:/GeeK/ComViz/arith_ast.png').show()

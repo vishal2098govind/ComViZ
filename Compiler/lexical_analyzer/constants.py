@@ -1,5 +1,9 @@
+import string
+
 # CONSTANTS
 DIGITS = '0123456789'
+LETTERS = string.ascii_letters
+LETTERS_DIGITS = DIGITS+LETTERS
 
 # TOKENTYPE(TT) CONSTANTS
 TT_INT = 'int'
@@ -12,3 +16,10 @@ TT_LPAREN = '('
 TT_RPAREN = ')'
 TT_EOF = 'EOF'
 TT_POW = '^'
+TT_KEYWORD = 'KEYWORD'
+TT_EQ = '='
+TT_IDENTIFIER = 'IDENTIFIER'
+
+KEYWORDS = [
+    "VAR"
+]

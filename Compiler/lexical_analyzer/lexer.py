@@ -35,8 +35,13 @@ class Lexer:
         # Scan each character to decide type of Token object to be created for it and create and append in tokens []:
         while self.current_char is not None:
 
+            # LETTERS -> make_identifier
+            if self.current_char in LETTERS:
+                identifier = self.make_identifier()
+                tokens.append(identifier)
+
             # DIGITS -> make_number_token
-            if self.current_char in DIGITS:
+            elif self.current_char in DIGITS:
                 number_token = self.make_number_token()
                 tokens.append(number_token)
 
@@ -77,6 +82,12 @@ class Lexer:
             # LPAREN TOKEN
             elif self.current_char == '(':
                 left_paren_token = Token(TT_LPAREN, pos_start=self.pos)
+                tokens.append(left_paren_token)
+                self.advance()
+
+            # EQ TOKEN
+            elif self.current_char == '=':
+                left_paren_token = Token(TT_EQ, pos_start=self.pos)
                 tokens.append(left_paren_token)
                 self.advance()
 
@@ -122,3 +133,22 @@ class Lexer:
         else:
             float_token = Token(TT_FLOAT, float(num_str), pos_start=pos_start, pos_end=self.pos)
             return float_token
+
+    def make_identifier(self):
+        id_str = ''
+
+        # save the current pos as starting pos of id_token
+        id_pos_start = self.pos.copy()
+
+        while self.current_char is not None and self.current_char in LETTERS_DIGITS + '_':
+            id_str += self.current_char
+            self.advance()
+
+        id_tok_type = None
+        if id_str in KEYWORDS:
+            id_tok_type = TT_KEYWORD
+        else:
+            id_tok_type = TT_IDENTIFIER
+
+        id_token = Token(type_=id_tok_type, value=id_str, pos_start=id_pos_start, pos_end=self.pos)
+        return id_token
