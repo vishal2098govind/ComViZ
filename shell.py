@@ -1,5 +1,5 @@
 from Compiler.run import run
-from Visualiser.visualise_ast import visualize
+from Visualiser.visualise_ast import visualize_ast
 
 while True:
     text = input('comviz >')
@@ -15,4 +15,4 @@ while True:
         if runtime_result:
             print('Interpreter Output: Result')
             print(runtime_result)
-            visualize(node=abstract_syntax_tree_root)
+            visualize_ast(node=abstract_syntax_tree_root)
