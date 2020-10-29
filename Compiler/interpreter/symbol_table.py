@@ -16,12 +16,11 @@ class SymbolTable:
     """
 
     def __init__(self):
-        self.symbols_map = {}
+        self.symbols_map = {"var": [], "var_value": [], "context": []}
         self.parent_symbol_table = None
 
     def get_var_value(self, var_name):
-        value = self.symbols_map.get(var_name, None)
-
+        value = self.symbols_map["var_value"][self.symbols_map["var"].index(var_name)]
         # if value is not found in own symbol_table, we have to search in parent_symbol_table
 
         if value is None and self.parent_symbol_table is not None:
@@ -30,8 +29,13 @@ class SymbolTable:
         else:
             return value
 
-    def set_var_value(self, var_name, new_var_value):
-        self.symbols_map[var_name] = new_var_value
+    def set_var_value(self, var_name, new_var_value, context_name):
+        self.symbols_map["var"].append(var_name)
+        self.symbols_map["var_value"].append(new_var_value)
+        self.symbols_map["context"].append(context_name)
 
     def remove_var_entry(self, var_name):
         del self.symbols_map[var_name]
+
+    def __repr__(self):
+        return f'{self.symbols_map}\n{self.parent_symbol_table}'

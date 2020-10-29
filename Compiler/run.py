@@ -6,7 +6,13 @@ from Compiler.lexical_analyzer.lexer import Lexer
 from Compiler.syntax_analyzer.parser import Parser
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set_var_value("null", Number(0))
+global_symbol_table.set_var_value("null", Number(0), '<program>')
+global_context = Context(
+    curr_context_name='<program>',
+    parent_context_name=None,
+    context_change_pos=None,
+)
+global_context.symbol_table = global_symbol_table
 
 
 def run(file_name, text):
@@ -41,13 +47,6 @@ def run(file_name, text):
     # Evaluate the abstract syntax tree obtained using interpreter
     interpreter = Interpreter()
 
-    # global context:
-    global_context = Context(
-            curr_context_name='<program>',
-            parent_context_name=None,
-            context_change_pos=None
-        )
-    global_context.symbol_table=global_symbol_table
     runtime_result = interpreter.evaluate_node(node=abstract_syntax_tree_root, context=global_context)
 
     if not runtime_result.error:

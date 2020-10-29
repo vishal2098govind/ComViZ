@@ -64,6 +64,12 @@ class Number:
         if isinstance(other_operand, Number):
             return Number(value=self.value**other_operand.value).set_context(context=self.context), None
 
+    def copy(self):
+        copy = Number(self.value)
+        copy.set_pos(pos_start=self.pos_start, pos_end=self.pos_end)
+        copy.set_context(self.context)
+        return copy
+
     def __repr__(self):
         return str(self.value)
 

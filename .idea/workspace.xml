@@ -29,8 +29,25 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="">
+    <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="updated README.md">
+      <change afterPath="$PROJECT_DIR$/Visualiser/visualise_st.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/df_styled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/symbol_table.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/context.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/symbol_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/symbol_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser_results.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visualiser/visualise_ast.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visualiser/visualise_ast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arith_ast.png" beforeDir="false" afterPath="$PROJECT_DIR$/arith_ast.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/shell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,12 +175,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="visualise_st" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ComViz" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visualiser" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Visualiser/visualise_st.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.shell" />
-        <item itemvalue="Python.constants" />
+        <item itemvalue="Python.visualise_st" />
         <item itemvalue="Python.visualise_pt" />
         <item itemvalue="Python.visualise_ast" />
+        <item itemvalue="Python.constants" />
       </list>
     </recent_temporary>
   </component>
@@ -179,6 +218,14 @@
       <option name="presentableId" value="Default" />
       <updated>1603242622815</updated>
     </task>
+    <task id="LOCAL-00001" summary="updated README.md">
+      <created>1603910078814</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603910078815</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -219,6 +266,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <MESSAGE value="updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -230,10 +279,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="201" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.864@0.0.1536.864" timestamp="1603891561390" />
-    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603863420492">
+    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603956740938">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1603863420492" />
+    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1603956740938" />
     <state x="1106" y="370" width="349" height="494" key="#xdebugger.XInspectDialog" timestamp="1603369741268">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -242,10 +291,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="93" y="93" width="1350" height="678" key="DiffContextDialog/0.0.1536.864@0.0.1536.864" timestamp="1603774385269" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603604152239">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603913004233">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603604152239" />
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603913004233" />
     <state width="1537" height="807" key="GridCell.Tab.-1.bottom" timestamp="1603643757106">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -262,38 +311,38 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1537" height="807" key="GridCell.Tab.-1.right/0.0.1536.864@0.0.1536.864" timestamp="1603643757106" />
-    <state width="778" height="735" key="GridCell.Tab.0.bottom" timestamp="1603909547967">
+    <state width="217" height="764" key="GridCell.Tab.0.bottom" timestamp="1603957777876">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="778" height="735" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603909547967" />
-    <state width="778" height="735" key="GridCell.Tab.0.center" timestamp="1603909547967">
+    <state width="217" height="764" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
+    <state width="217" height="764" key="GridCell.Tab.0.center" timestamp="1603957777876">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="778" height="735" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603909547967" />
-    <state width="778" height="735" key="GridCell.Tab.0.left" timestamp="1603909547967">
+    <state width="217" height="764" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
+    <state width="217" height="764" key="GridCell.Tab.0.left" timestamp="1603957777876">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="778" height="735" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603909547967" />
-    <state width="778" height="735" key="GridCell.Tab.0.right" timestamp="1603909547967">
+    <state width="217" height="764" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
+    <state width="217" height="764" key="GridCell.Tab.0.right" timestamp="1603957777876">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="778" height="735" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603909547967" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom" timestamp="1603907088698">
+    <state width="217" height="764" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom" timestamp="1603943025774">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603907088698" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center" timestamp="1603907088698">
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603943025774" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center" timestamp="1603943025773">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603907088698" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left" timestamp="1603907088698">
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603943025773" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left" timestamp="1603943025773">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603907088698" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right" timestamp="1603907088698">
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603943025773" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right" timestamp="1603943025774">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603907088698" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603943025774" />
     <state x="-6" y="0" width="767" height="804" key="GridCell.Tab.2.bottom" timestamp="1603643982133">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -338,9 +387,9 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="541" y="306" width="609" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.864@0.0.1536.864" timestamp="1603313214763" />
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603907977031">
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603957331929">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603907977031" />
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603957331929" />
   </component>
 </project>

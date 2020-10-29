@@ -2,6 +2,7 @@ from Compiler.error_handler.runtime_err import InterpreterError
 from Compiler.interpreter.runtime_result import RuntimeResult
 from Compiler.interpreter.data_types import Number
 from Compiler.lexical_analyzer.constants import *
+from Visualiser.visualise_st import visualise_st
 
 
 class Interpreter:
@@ -135,6 +136,8 @@ class Interpreter:
     def evaluate_VariableAccessNode(var_acc_node, context):
         runtime_result = RuntimeResult()
         var_name_to_be_accessed = var_acc_node.var_name_token.value
+
+        # Access Symbol table to get value of the variable
         var_value = context.symbol_table.get_var_value(var_name=var_name_to_be_accessed)
 
         if not var_value:
@@ -145,6 +148,7 @@ class Interpreter:
                 context=context
             ))
 
+        var_value = var_value.copy().set_pos(pos_start=var_acc_node.pos_start, pos_end=var_acc_node.pos_end)
         return runtime_result.success(result=var_value)
 
     def evaluate_VariableAssignNode(self, var_ass_node, context):
@@ -156,5 +160,7 @@ class Interpreter:
             return runtime_result
 
         # set value of var_name in symbol table to var_value
-        context.symbol_table.set_var_value(var_name=var_name_to_be_assigned, new_var_value=var_value)
+        context.symbol_table.set_var_value(var_name=var_name_to_be_assigned, new_var_value=var_value,
+                                           context_name=context.curr_context_name)
+        visualise_st(context)
         return runtime_result.success(var_value)

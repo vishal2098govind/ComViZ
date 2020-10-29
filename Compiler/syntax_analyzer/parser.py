@@ -68,7 +68,9 @@ class Parser:
         parse_result = ParseResult()
 
         if self.curr_token.type == TT_KEYWORD and self.curr_token.value == 'VAR':
-            parse_result.register(self.advance_token())
+
+            parse_result.register_advancement()
+            self.advance_token()
 
             if self.curr_token.type != TT_IDENTIFIER:
                 return parse_result.failure(error=InvalidSyntaxError(
@@ -78,7 +80,9 @@ class Parser:
                 ))
 
             var_name = self.curr_token
-            parse_result.register(self.advance_token())
+
+            parse_result.register_advancement()
+            self.advance_token()
 
             if self.curr_token.type != TT_EQ:
                 return parse_result.failure(error=InvalidSyntaxError(
@@ -87,7 +91,8 @@ class Parser:
                     err_details="Expected '='"
                 ))
 
-            parse_result.register(self.advance_token())
+            parse_result.register_advancement()
+            self.advance_token()
 
             var_value = parse_result.register(self.arith_exp())
 
@@ -96,11 +101,22 @@ class Parser:
 
             return parse_result.success(node=VariableAssignNode(var_name_token=var_name, var_value_node=var_value))
 
-        return self.binary_operation_node(
+        bin_op_node = parse_result.register(self.binary_operation_node(
             left_rule=self.term,
             op_token_tuple=(TT_PLUS, TT_MINUS),
             right_rule=self.term,
-        )
+        ))
+
+        if parse_result.error:
+            return parse_result.failure(
+                InvalidSyntaxError(
+                    pos_start=self.curr_token.pos_start,
+                    pos_end=self.curr_token.pos_end,
+                    err_details="Expected 'VAR' or int or float or identifier or '+' or '-' or '('"
+                )
+            )
+
+        return parse_result.success(bin_op_node)
 
     # T -> l_F ((MUL_Token or DIV_Token) r_F)*     // Binary Operation
     def term(self):  # T
@@ -132,7 +148,10 @@ class Parser:
 
         # F -> PLUS_Token F | MINUS_Token F        // Unary Operation
         if self.curr_token.type in (TT_PLUS, TT_MINUS):
-            parse_result.register(self.advance_token())  # register PLUS or MINUS
+
+            parse_result.register_advancement()
+            self.advance_token()
+            # register PLUS or MINUS
 
             right_factor_node = parse_result.register(self.factor())
 
@@ -179,7 +198,9 @@ class Parser:
         # A -> IDENTIFIER
         # A returns ParseResult(node=VariableAccessNode(IDENTIFIER_TOKEN), error=None) object to its caller
         if curr_tok.type == TT_IDENTIFIER:
-            parse_result.register(self.advance_token())
+
+            parse_result.register_advancement()
+            self.advance_token()
 
             return parse_result.success(node=VariableAccessNode(
                 var_name_token=curr_tok
@@ -188,22 +209,28 @@ class Parser:
         # A -> INT_Token | FLOAT_Token
         # A returns ParseResult(node=NumberToken(INT_Token), error=None) object to its caller
         if curr_tok.type in (TT_INT, TT_FLOAT):
-            parse_result.register(self.advance_token())  # INT_Token or FLOAT_Token
 
+            parse_result.register_advancement()  # INT_Token or FLOAT_Token
+            self.advance_token()
             # return ParseResult(node=NumberNode(curr_token), error=None) object to caller of self.atom()
             return parse_result.success(node=NumberNode(num_token=curr_tok))
 
         # A -> (_Token E )_Token
         # A returns ParseResult(node = arith_exp_node, error=None) object to its caller
         elif curr_tok.type == TT_LPAREN:
-            parse_result.register(self.advance_token())  # (
+
+            parse_result.register_advancement()  # (
+            self.advance_token()
+
             arith_exp_node = parse_result.register(self.arith_exp())  # E
 
             if parse_result.error:
                 return parse_result
 
             if self.curr_token.type == TT_RPAREN:
-                parse_result.register(self.advance_token())  # )
+
+                parse_result.register_advancement()  # )
+                self.advance_token()
 
                 # return ParseResult(node = arith_exp_node, error = None)
                 return parse_result.success(node=arith_exp_node)
@@ -223,7 +250,7 @@ class Parser:
                 error=InvalidSyntaxError(
                     pos_start=curr_tok.pos_start,
                     pos_end=curr_tok.pos_end,
-                    err_details="Expected INT or FLOAT or '+' or '-' or ("
+                    err_details="Expected identifier or INT or FLOAT or '+' or '-' or ("
                 )
             )
 
@@ -252,7 +279,9 @@ class Parser:
 
         while self.curr_token.type in op_token_tuple:  # ((MUL/PLUS or DIV/MINUS or POW) right_rule)*
             op_token = self.curr_token
-            parse_result.register(self.advance_token())  # (MUL/PLUS or DIV/MINUS or POW)
+
+            parse_result.register_advancement()  # (MUL/PLUS or DIV/MINUS or POW)
+            self.advance_token()
 
             right_rule_node = parse_result.register(right_rule())  # right_rule
 

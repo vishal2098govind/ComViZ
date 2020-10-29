@@ -10,6 +10,8 @@ autopep8 = "*"
 anytree = "==2.8.0"
 pillow = "*"
 graphviz = "*"
+pandas = "*"
+dataframe-image = "*"
 
 [requires]
 python_version = "3.9"
