@@ -43,7 +43,7 @@ class Parser:
     def advance_token(self, caller=None):
         prev_tok = self.curr_token
 
-        # visualize terminals:
+        # terminals:
         if caller and prev_tok.type in (TT_INT, TT_FLOAT, TT_DIV, TT_POW, TT_MUL, TT_LPAREN, TT_MINUS, TT_RPAREN,
                                         TT_PLUS, TT_KEYWORD, TT_IDENTIFIER, TT_EQ, TT_EE, TT_NE, TT_GTE, TT_GT,
                                         TT_LT, TT_LTE):
@@ -329,7 +329,7 @@ class Parser:
         # A -> <IF-EXPR>
         # A returns ParseResult(node = if_exp_node, error = None) object
         elif curr_tok.type == TT_KEYWORD and curr_tok.value == 'IF':
-            if_exp_node = parse_result.register(self.if_expr_parser())
+            if_exp_node = parse_result.register(self.if_expr_parser(caller=non_terminal_node))
             
             if parse_result.error:
                 return parse_result
@@ -394,7 +394,11 @@ class Parser:
 
         return parse_result.success(node=left_rule_node)
 
-    def if_expr_parser(self):
+    def if_expr_parser(self, caller):
+
+        non_terminal_node = AnyNode(id='IF' + str(len(self.trace)), name=self.curr_token, parent=caller)
+        self.trace.append(non_terminal_node)
+        self.visualize_parse_tree()
 
         parse_result = ParseResult()
 
@@ -414,11 +418,12 @@ class Parser:
         parse_result.register_advancement()
         self.advance_token()
 
-        if_condition = parse_result.register(self.parse_tokens())
+        if_condition = parse_result.register(self.parse_tokens(caller=non_terminal_node))
         if parse_result.error:
             return parse_result
 
         if not self.curr_token.type == TT_KEYWORD and self.curr_token.value == 'THEN':
+
             return parse_result.failure(
                 InvalidSyntaxError(
                     pos_start=self.curr_token.pos_start,
@@ -426,10 +431,11 @@ class Parser:
                     err_details="Expected 'THEN'"
                 )
             )
+
         parse_result.register_advancement()
         self.advance_token()
 
-        if_cond_true_exp = parse_result.register(self.parse_tokens())
+        if_cond_true_exp = parse_result.register(self.parse_tokens(caller=non_terminal_node))
         if parse_result.error:
             return parse_result
         cases.append((if_condition, if_cond_true_exp))
@@ -437,6 +443,10 @@ class Parser:
         # (<ELIF-EXPR>)*
         # <ELIF-EXPR> -> ELIF E THEN E
         while self.curr_token.type == TT_KEYWORD and self.curr_token.value == 'ELIF':
+            non_terminal_node = AnyNode(id='ELIF' + str(len(self.trace)), name=self.curr_token, parent=caller)
+            self.trace.append(non_terminal_node)
+            self.visualize_parse_tree()
+
             parse_result.register_advancement()
             self.advance_token()
 
@@ -445,6 +455,7 @@ class Parser:
                 return parse_result
 
             if not self.curr_token.type == TT_KEYWORD and self.curr_token.value == 'THEN':
+
                 return parse_result.failure(
                     InvalidSyntaxError(
                         pos_start=self.curr_token.pos_start,
@@ -456,7 +467,7 @@ class Parser:
             parse_result.register_advancement()
             self.advance_token()
 
-            elif_cond_true_exp = parse_result.register(self.parse_tokens())
+            elif_cond_true_exp = parse_result.register(self.parse_tokens(caller=non_terminal_node))
             if parse_result.error:
                 return parse_result
             cases.append((elif_condition, elif_cond_true_exp))
@@ -464,10 +475,14 @@ class Parser:
         # (<ELSE-EXPR>)?
         # <ELSE-EXPR> -> ELSE E
         if self.curr_token.type == TT_KEYWORD and self.curr_token.value == 'ELSE':
+            non_terminal_node = AnyNode(id='ELSE' + str(len(self.trace)), name=self.curr_token, parent=caller)
+            self.trace.append(non_terminal_node)
+            self.visualize_parse_tree()
+
             parse_result.register_advancement()
             self.advance_token()
 
-            if_cond_true_exp = parse_result.register(self.parse_tokens())
+            if_cond_true_exp = parse_result.register(self.parse_tokens(caller=non_terminal_node))
             if parse_result.error:
                 return parse_result
             else_case = if_cond_true_exp
