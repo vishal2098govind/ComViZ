@@ -8,27 +8,31 @@ LETTERS_DIGITS = DIGITS+LETTERS
 # TOKENTYPE(TT) CONSTANTS
 TT_INT = 'int'
 TT_FLOAT = 'float'
-TT_PLUS = '+'
-TT_MINUS = '-'
-TT_MUL = '*'
-TT_DIV = '/'
+TT_PLUS = 'PLUS'
+TT_MINUS = 'MINUS'
+TT_MUL = 'MUL'
+TT_DIV = 'DIV'
 TT_LPAREN = '('
 TT_RPAREN = ')'
 TT_EOF = 'EOF'
-TT_POW = '^'
+TT_POW = 'POW'
 TT_KEYWORD = 'KEYWORD'
-TT_EQ = '='
-TT_IDENTIFIER = 'IDENTIFIER'
-TT_EE = '=='
-TT_NE = '!='
-TT_LT = '<'
-TT_GT = '>'
-TT_LTE = '<='
-TT_GTE = '>='
+TT_EQ = 'EQ'
+TT_IDENTIFIER = 'ID'
+TT_EE = 'EE'
+TT_NE = 'NE'
+TT_LT = 'LT'
+TT_GT = 'GT'
+TT_LTE = 'LTE'
+TT_GTE = 'GTE'
 
 KEYWORDS = [
     "VAR",
     "OR",
     "NOT",
-    "AND"
+    "AND",
+    "IF",
+    "THEN",
+    "ELSE",
+    "ELIF",
 ]

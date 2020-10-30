@@ -182,3 +182,25 @@ class Interpreter:
                                            context_name=context.curr_context_name)
         visualise_st(context)
         return runtime_result.success(var_value)
+
+    def evaluate_IfNode(self, if_node, context):
+        runtime_result = RuntimeResult()
+
+        for condition, expr in if_node.cases:
+            condition_value = runtime_result.register(self.evaluate_node(node=condition, context=context))
+            if runtime_result.error:
+                return runtime_result
+
+            if condition_value.is_true():
+                expr_value = runtime_result.register((self.evaluate_node(node=expr, context=context)))
+                if runtime_result.error:
+                    return runtime_result
+                return runtime_result.success(expr_value)
+            if if_node.else_case:
+                else_value = runtime_result.register(self.evaluate_node(node=if_node.else_case, context=context))
+                if runtime_result.error:
+                    return runtime_result
+                return runtime_result.success(else_value)
+
+            # If no else condition
+            return runtime_result.success(None)

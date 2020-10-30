@@ -4,6 +4,7 @@ from Compiler.interpreter.interpreter import Interpreter
 from Compiler.interpreter.symbol_table import SymbolTable
 from Compiler.lexical_analyzer.lexer import Lexer
 from Compiler.syntax_analyzer.parser import Parser
+from Visualiser.visualise_st import visualise_st
 
 global_symbol_table = SymbolTable()
 global_symbol_table.set_var_value("NULL", Number(0), '<program>')
@@ -15,6 +16,7 @@ global_context = Context(
     context_change_pos=None,
 )
 global_context.symbol_table = global_symbol_table
+visualise_st(context=global_context)
 
 
 def run(file_name, text):
@@ -41,6 +43,7 @@ def run(file_name, text):
 
     syntax_error = parse_result.error
     abstract_syntax_tree_root = parse_result.node
+    trace = parser.trace
 
     if syntax_error:
         # if syntax_error, interpreter will not be used and directly error will be displayed
@@ -52,6 +55,6 @@ def run(file_name, text):
     runtime_result = interpreter.evaluate_node(node=abstract_syntax_tree_root, context=global_context)
 
     if not runtime_result.error:
-        return tokens, abstract_syntax_tree_root, None, runtime_result.result
+        return tokens, (abstract_syntax_tree_root, trace), None, runtime_result.result
 
-    return tokens, abstract_syntax_tree_root, runtime_result.error, None
+    return tokens, (abstract_syntax_tree_root, trace), runtime_result.error, None

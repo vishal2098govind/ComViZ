@@ -3,7 +3,7 @@ from .error import Error
 
 class IllegalCharError(Error):
     """
-      Raised when Lexer comes accros a char which is not supported by our language
+      Raised when Lexer comes across a char which is not supported by our language
     """
 
     def __init__(self, pos_start, pos_end, err_details):
