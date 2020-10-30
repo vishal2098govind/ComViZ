@@ -30,24 +30,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce074da5-2b2f-44cb-b446-582687ba9a8f" name="Default Changelist" comment="updated README.md">
-      <change afterPath="$PROJECT_DIR$/Visualiser/visualise_st.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/df_styled.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/symbol_table.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/error_handler/expected_char_err.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Compiler/grammars/exp_v4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/interpreter/context.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/context.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/data_types.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/interpreter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/interpreter/symbol_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/interpreter/symbol_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/lexer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/lexical_analyzer/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/lexical_analyzer/position.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/nodes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/syntax_analyzer/parser_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Visualiser/visualise_ast.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visualiser/visualise_ast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arith_ast.png" beforeDir="false" afterPath="$PROJECT_DIR$/arith_ast.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/shell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symbol_table.png" beforeDir="false" afterPath="$PROJECT_DIR$/symbol_table.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,6 +270,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="361" y="90" width="814" height="729" key="#Intentions/0.0.1536.864@0.0.1536.864" timestamp="1603314525164" />
+    <state x="508" y="256" key="#Notifications" timestamp="1604040372477">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="508" y="256" key="#Notifications/0.0.1536.864@0.0.1536.864" timestamp="1604040372477" />
     <state x="201" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603891561390">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -287,10 +286,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="1106" y="370" width="349" height="494" key="#xdebugger.XInspectDialog/0.0.1536.864@0.0.1536.864" timestamp="1603369741268" />
-    <state x="93" y="93" width="1350" height="678" key="DiffContextDialog" timestamp="1603774385269">
+    <state x="93" y="93" width="1350" height="678" key="DiffContextDialog" timestamp="1604029157012">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="93" y="93" width="1350" height="678" key="DiffContextDialog/0.0.1536.864@0.0.1536.864" timestamp="1603774385269" />
+    <state x="93" y="93" width="1350" height="678" key="DiffContextDialog/0.0.1536.864@0.0.1536.864" timestamp="1604029157012" />
     <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603913004233">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -311,38 +310,42 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1537" height="807" key="GridCell.Tab.-1.right/0.0.1536.864@0.0.1536.864" timestamp="1603643757106" />
-    <state width="217" height="764" key="GridCell.Tab.0.bottom" timestamp="1603957777876">
+    <state width="756" height="237" key="GridCell.Tab.0.bottom" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="217" height="764" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
-    <state width="217" height="764" key="GridCell.Tab.0.center" timestamp="1603957777876">
+    <state width="369" height="639" key="GridCell.Tab.0.bottom/0.0.1360.768@0.0.1360.768" timestamp="1604060772563" />
+    <state width="756" height="237" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
+    <state width="756" height="237" key="GridCell.Tab.0.center" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="217" height="764" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
-    <state width="217" height="764" key="GridCell.Tab.0.left" timestamp="1603957777876">
+    <state width="369" height="639" key="GridCell.Tab.0.center/0.0.1360.768@0.0.1360.768" timestamp="1604060772563" />
+    <state width="756" height="237" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
+    <state width="756" height="237" key="GridCell.Tab.0.left" timestamp="1604079191685">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="217" height="764" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
-    <state width="217" height="764" key="GridCell.Tab.0.right" timestamp="1603957777876">
+    <state width="369" height="639" key="GridCell.Tab.0.left/0.0.1360.768@0.0.1360.768" timestamp="1604060772563" />
+    <state width="756" height="237" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1604079191685" />
+    <state width="756" height="237" key="GridCell.Tab.0.right" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="217" height="764" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603957777876" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom" timestamp="1603943025774">
+    <state width="369" height="639" key="GridCell.Tab.0.right/0.0.1360.768@0.0.1360.768" timestamp="1604060772563" />
+    <state width="756" height="237" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603943025774" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center" timestamp="1603943025773">
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1603943025773" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left" timestamp="1603943025773">
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1603943025773" />
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right" timestamp="1603943025774">
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right" timestamp="1604079191686">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1603943025774" />
+    <state x="0" y="0" width="756" height="237" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1604079191686" />
     <state x="-6" y="0" width="767" height="804" key="GridCell.Tab.2.bottom" timestamp="1603643982133">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -371,10 +374,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="775" height="439" key="XDebugger.FullValuePopup/0.0.1536.864@0.0.1536.864" timestamp="1603596310928" />
-    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603691678004">
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604040160884">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1603691678004" />
+    <state x="586" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1604040160884" />
     <state x="-6" y="0" width="781" height="870" key="dock-window-1" timestamp="1603643867992">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -387,9 +390,20 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="541" y="306" width="609" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.864@0.0.1536.864" timestamp="1603313214763" />
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1603957331929">
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1604078899918">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1603957331929" />
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1604078899918" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Visualiser/visualise_ast.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

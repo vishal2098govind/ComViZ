@@ -2,7 +2,7 @@
 # POSITION CLASS
 ##########################
 
-class Position():
+class Position:
     """
         To keep track of line no, col no, index, file_name and file_text of each char
         Useful to point exact location of errors

@@ -30,9 +30,12 @@ class SymbolTable:
             return value
 
     def set_var_value(self, var_name, new_var_value, context_name):
-        self.symbols_map["var"].append(var_name)
-        self.symbols_map["var_value"].append(new_var_value)
-        self.symbols_map["context"].append(context_name)
+        if var_name not in self.symbols_map["var"]:
+            self.symbols_map["var"].append(var_name)
+            self.symbols_map["var_value"].append(new_var_value)
+            self.symbols_map["context"].append(context_name)
+        else:
+            self.symbols_map["var_value"][self.symbols_map["var"].index(var_name)] = new_var_value
 
     def remove_var_entry(self, var_name):
         del self.symbols_map[var_name]

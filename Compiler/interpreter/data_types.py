@@ -70,6 +70,43 @@ class Number:
         copy.set_context(self.context)
         return copy
 
+    # Comparison Operations ( True = 1 , False = 0 )
+
+    def get_comparison_eq(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value == other_operand.value)).set_context(self.context), None
+
+    def get_comparison_ne(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value != other_operand.value)).set_context(self.context), None
+
+    def get_comparison_lt(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value < other_operand.value)).set_context(self.context), None
+
+    def get_comparison_lte(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value <= other_operand.value)).set_context(self.context), None
+
+    def get_comparison_gt(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value > other_operand.value)).set_context(self.context), None
+
+    def get_comparison_gte(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value >= other_operand.value)).set_context(self.context), None
+
+    def anded_by(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value and other_operand.value)).set_context(self.context), None
+
+    def ored_by(self, other_operand):
+        if isinstance(other_operand, Number):
+            return Number(int(self.value or other_operand.value)).set_context(self.context), None
+
+    def notted(self):
+        return Number(1 if self.value == 0 else 0).set_context(self.context), None
+
     def __repr__(self):
         return str(self.value)
 

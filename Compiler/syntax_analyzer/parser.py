@@ -1,4 +1,3 @@
-
 from Compiler.error_handler.invalid_syntax_err import InvalidSyntaxError
 from Compiler.lexical_analyzer.constants import *
 from Compiler.syntax_analyzer.nodes import *
@@ -7,12 +6,16 @@ from Compiler.syntax_analyzer.parser_results import ParseResult
 
 class Parser:
     """
-        # Parser for Arithmetic Expression Grammar
-        # E -> KEYWORD:VAR ID EQ E | l_T ((PLUS_Token or MINUS_Token) r_T)* ,
-        # T -> l_F ((MUL_Token or DIV_Token) r_F)* ,
-        # F -> PLUS_Token F | MINUS_Token F | P,
-        # P -> A (POW_Token F)*
-        # A -> IDENTIFIER | INT_Token | FLOAT_Token | (_Token E )_Token
+        # Grammar for Comparison Expression and Variable-Assignment Expression and Logical Expression
+        E -> KEYWORD:VAR_Token ID_Token EQ_Token E | l_C ((KEYWORD:AND_Token or KEYWORD:OR_Token) r_C)*,
+        C -> ArE ((==|<=|>=or > or <) ArE)*,
+
+        # Grammar for Arithmetic Expression Grammar and Variable-Access Expression
+        ArE -> l_T ((+_Token or -_Token) r_T)* ,
+        T -> l_F ((*_Token or /_Token) r_F)* ,
+        F -> +_Token F | -_Token F | P,
+        P -> A (^_Token F)*
+        A -> ID_Token | INT_Token | FLOAT_Token | (_Token E )_Token
     """
 
     def __init__(self, token_list):
@@ -33,34 +36,15 @@ class Parser:
 
         return self.curr_token
 
-    # Parse the arithmetic expression
-    def arith_exp_parser(self):
-        """
-        Returns:
-            on success: ParseResult(node=root of abstract_syntax_tree obtained, error=None)
-            on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
-        """
-        parse_result = self.arith_exp()
-
-        if not parse_result.error and self.curr_token.type != TT_EOF:
-            return parse_result.failure(InvalidSyntaxError(
-                self.curr_token.pos_start,
-                self.curr_token.pos_end,
-                "Expected '+', '-', '*' or '/'"
-            ))
-
-        return parse_result
-
     # Every _Token is a terminal
     # For each of the non-terminal , we define a method:
 
-    # E -> l_T ((PLUS_Token or MINUS_Token) r_T)*  // Binary Operation
-    # E -> KEYWORD:VAR ID EQ E
-    def arith_exp(self):  # E
+    # Parse the comparison expression and variable-assignment expression and logical expression
+    # E -> KEYWORD:VAR_Token ID_Token EQ_Token E | l_C ((KEYWORD:AND_Token or KEYWORD:OR_Token) r_C)*
+    def parse_tokens(self):
         """
-        expression -> left_term_node ( ( PLUS or MINUS ) right_term_node )*
-        expression -> VAR ID = expression
-
+            expression -> VAR_Token ID_Token = expression
+            expression -> l_C ((KEYWORD:AND_Token or KEYWORD:OR_Token) r_C)*
         Returns:
             on success: ParseResult(node=Node instance, error=None)
             on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
@@ -73,14 +57,15 @@ class Parser:
             self.advance_token()
 
             if self.curr_token.type != TT_IDENTIFIER:
-                return parse_result.failure(error=InvalidSyntaxError(
-                    pos_start=self.curr_token.pos_start,
-                    pos_end=self.curr_token.pos_end,
-                    err_details="Expected identifier"
-                ))
+                return parse_result.failure(
+                    InvalidSyntaxError(
+                        pos_start=self.curr_token.pos_start,
+                        pos_end=self.curr_token.pos_end,
+                        err_details="Expected identifier"
+                    )
+                )
 
             var_name = self.curr_token
-
             parse_result.register_advancement()
             self.advance_token()
 
@@ -88,38 +73,94 @@ class Parser:
                 return parse_result.failure(error=InvalidSyntaxError(
                     pos_start=self.curr_token.pos_start,
                     pos_end=self.curr_token.pos_end,
-                    err_details="Expected '='"
+                    err_details="Expected '=' or 'NOT'"
                 ))
 
             parse_result.register_advancement()
             self.advance_token()
 
-            var_value = parse_result.register(self.arith_exp())
+            var_value = parse_result.register(self.arith_exp_parser())
 
             if parse_result.error:
                 return parse_result
 
             return parse_result.success(node=VariableAssignNode(var_name_token=var_name, var_value_node=var_value))
+        else:
 
-        bin_op_node = parse_result.register(self.binary_operation_node(
-            left_rule=self.term,
-            op_token_tuple=(TT_PLUS, TT_MINUS),
-            right_rule=self.term,
-        ))
+            logical_op_node = parse_result.register(self.binary_operation_node_parser(
+                left_rule=self.comp_exp_parser,
+                op_token_tuple=((TT_KEYWORD, "AND"), (TT_KEYWORD, "OR")),
+                right_rule=self.comp_exp_parser
+            ))
 
-        if parse_result.error:
-            return parse_result.failure(
-                InvalidSyntaxError(
-                    pos_start=self.curr_token.pos_start,
-                    pos_end=self.curr_token.pos_end,
-                    err_details="Expected 'VAR' or int or float or identifier or '+' or '-' or '('"
+            return parse_result.success(node=logical_op_node)
+
+    # Parse the arithmetic expression
+    # C -> ArE ((==|<=|>=or > or <) ArE)*
+    def comp_exp_parser(self):
+        """
+        Returns:
+            on success: ParseResult(node=root of abstract_syntax_tree obtained, error=None)
+            on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
+        """
+        parse_result = ParseResult()
+
+        if self.curr_token.type == TT_KEYWORD and self.curr_token.value == 'NOT':
+            not_op_token = self.curr_token
+
+            parse_result.register_advancement()
+            self.advance_token()
+
+            not_op_node = parse_result.register(self.comp_exp_parser())
+
+            if parse_result.error:
+                return parse_result
+
+            return parse_result.success(
+                UnaryOperationNode(
+                    op_token=not_op_token,
+                    right_node=not_op_node
                 )
             )
 
-        return parse_result.success(bin_op_node)
+        else:
+            comparison_op_node = parse_result.register(
+                self.binary_operation_node_parser(
+                    left_rule=self.arith_exp_parser,
+                    op_token_tuple=(TT_GT, TT_LT, TT_GTE, TT_LTE, TT_EE, TT_NE),
+                    right_rule=self.arith_exp_parser
+                )
+            )
 
-    # T -> l_F ((MUL_Token or DIV_Token) r_F)*     // Binary Operation
-    def term(self):  # T
+            if parse_result.error:
+                return parse_result.failure(
+                    InvalidSyntaxError(
+                        pos_start=self.curr_token.pos_start,
+                        pos_end=self.curr_token.pos_end,
+                        err_details="Expected int, float, identifier, '+', '-', '(' or 'NOT'"
+                    )
+                )
+
+            else:
+                return parse_result.success(node=comparison_op_node)
+
+    # ArE -> l_T ((+_Token or -_Token) r_T)*  // Binary Operation
+    def arith_exp_parser(self):  # E
+        """
+        expression -> left_term_node ( ( + or - ) right_term_node )*
+
+        Returns:
+            on success: ParseResult(node=Node instance, error=None)
+            on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
+        """
+        return self.binary_operation_node_parser(
+            left_rule=self.term_parser,
+            op_token_tuple=(TT_PLUS, TT_MINUS),
+            right_rule=self.term_parser
+        )
+
+    # T -> l_F ((*_Token or /_Token) r_F)*     // Binary Operation
+    def term_parser(self):  # T
         """
         term -> left_factor_node ( ( MUL_Token or DIV_Token ) right_factor_node )*
 
@@ -127,33 +168,30 @@ class Parser:
             on success: ParseResult(node=Node instance, error=None)
             on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
         """
-        return self.binary_operation_node(
-            left_rule=self.factor,
-            op_token_tuple=(TT_MUL, TT_DIV),
-            right_rule=self.factor,
-        )
+        return self.binary_operation_node_parser(left_rule=self.factor_parser, op_token_tuple=(TT_MUL, TT_DIV),
+                                                 right_rule=self.factor_parser)
 
-    # F -> PLUS_Token F | MINUS_Token F | P        // Unary Operation
-    def factor(self):  # F
+    # F -> +_Token F | -_Token F | P        // Unary Operation
+    def factor_parser(self):  # F
         """
-        factor -> PLUS_Token power | MINUS_Token power | power
+        factor -> +_Token power | -_Token power | power
 
         Returns:
-                for factor-> PLUS_Token power| MINUS_Token power:
+                for factor-> +_Token power| -_Token power:
                     on success: ParseResult(node=Node instance, error=None)
                     on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
         """
         parse_result = ParseResult()
         curr_tok = self.curr_token
 
-        # F -> PLUS_Token F | MINUS_Token F        // Unary Operation
+        # F -> +_Token F | -_Token F        // Unary Operation
         if self.curr_token.type in (TT_PLUS, TT_MINUS):
 
             parse_result.register_advancement()
             self.advance_token()
-            # register PLUS or MINUS
+            # register + or -
 
-            right_factor_node = parse_result.register(self.factor())
+            right_factor_node = parse_result.register(self.factor_parser())
 
             if parse_result.error:
                 return parse_result
@@ -167,27 +205,24 @@ class Parser:
 
         # F -> P                                    // Unit Production
         else:
-            return self.power()
+            return self.power_parser()
 
-    # P -> A (POW_Token F)*                        // Binary Operation
-    def power(self):  # P
+    # P -> A (^_Token F)*                        // Binary Operation
+    def power_parser(self):  # P
         """
-        P -> A ( POW_Token F )*
+        P -> A ( ^_Token F )*
 
         Returns:
             on success: ParseResult(node=Node instance, error=None)
             on failure: ParseResult(node=Node instance, error=InvalidSyntaxError())
         """
-        return self.binary_operation_node(
-            left_rule=self.atom,
-            op_token_tuple=(TT_POW,),
-            right_rule=self.factor,
-        )
+        return self.binary_operation_node_parser(left_rule=self.atom_parser, op_token_tuple=(TT_POW,),
+                                                 right_rule=self.factor_parser)
 
-    # A -> IDENTIFIER | INT_Token | FLOAT_Token | (_Token E )_Token
-    def atom(self):  # A
+    # A -> ID_Token(Variable-Access-Expression) | INT_Token | FLOAT_Token | (_Token E )_Token
+    def atom_parser(self):  # A
         """
-        A -> IDENTIFIER | INT_Token | FLOAT_Token | (_Token E )_Token
+        A -> ID_Token | INT_Token | FLOAT_Token | (_Token E )_Token
         Returns:
             on success: ParseResult( node=Node instance, error=None) object
             on failure: ParseResult( node=Node instance, error=InvalidSyntax())
@@ -198,7 +233,6 @@ class Parser:
         # A -> IDENTIFIER
         # A returns ParseResult(node=VariableAccessNode(IDENTIFIER_TOKEN), error=None) object to its caller
         if curr_tok.type == TT_IDENTIFIER:
-
             parse_result.register_advancement()
             self.advance_token()
 
@@ -222,7 +256,7 @@ class Parser:
             parse_result.register_advancement()  # (
             self.advance_token()
 
-            arith_exp_node = parse_result.register(self.arith_exp())  # E
+            arith_exp_node = parse_result.register(self.arith_exp_parser())  # E
 
             if parse_result.error:
                 return parse_result
@@ -254,17 +288,18 @@ class Parser:
                 )
             )
 
-    # left_terminal -> left_rule ((MUL/PLUS or DIV/MINUS or POW) right_rule)*
-    def binary_operation_node(self, left_rule, op_token_tuple, right_rule):
+    # left_terminal -> left_rule ((* or + or / or - or ^ or AND or OR or > or >= or < or <= or ==) right_rule)*
+    def binary_operation_node_parser(self, left_rule, op_token_tuple, right_rule):
         """
             left_terminal -> left_rule ( (op_token,) right_rule )*
 
-            For Binary Operation Terminals i.e. E, T, P:
+            For Binary Operation Terminals i.e. E, C, ArE, T, P:
             Utility for self.arith_exp , self.term, self.power because all these are binary operation nodes
 
         Args:
             left_rule: self.factor or self.term or self.atom
-            op_token_tuple: (TT_MUL, TT_DIV) or (TT_PLUS, TT_MINUS) or (TT_POW,)
+            op_token_tuple: (TT_MUL, TT_DIV) or (TT_PLUS, TT_MINUS) or (TT_POW,) or (TT_AND, TT_OR) or
+                            (TT_GT, TT_GTE, TT_LT, TT_LTE, TT_EE)
             right_rule: self.factor or self.term
 
         Returns:
@@ -276,14 +311,16 @@ class Parser:
 
         if parse_result.error:
             return parse_result
+        # ((* or + or / or - or ^ or AND or OR or > or >= or < or <= or ==) right_rule)*
+        while self.curr_token.type in op_token_tuple or (self.curr_token.type, self.curr_token.value) in op_token_tuple:
 
-        while self.curr_token.type in op_token_tuple:  # ((MUL/PLUS or DIV/MINUS or POW) right_rule)*
             op_token = self.curr_token
 
-            parse_result.register_advancement()  # (MUL/PLUS or DIV/MINUS or POW)
+            # (* or + or / or - or ^ or AND or OR or > or >= or < or <= or ==)
+            parse_result.register_advancement()
             self.advance_token()
 
-            right_rule_node = parse_result.register(right_rule())  # right_rule
+            right_rule_node = parse_result.register(right_rule())
 
             if parse_result.error:
                 return parse_result

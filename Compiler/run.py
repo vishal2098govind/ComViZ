@@ -6,7 +6,9 @@ from Compiler.lexical_analyzer.lexer import Lexer
 from Compiler.syntax_analyzer.parser import Parser
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set_var_value("null", Number(0), '<program>')
+global_symbol_table.set_var_value("NULL", Number(0), '<program>')
+global_symbol_table.set_var_value("TRUE", Number(1), '<program>')
+global_symbol_table.set_var_value("FALSE", Number(0), '<program>')
 global_context = Context(
     curr_context_name='<program>',
     parent_context_name=None,
@@ -35,7 +37,7 @@ def run(file_name, text):
     parser = Parser(token_list=tokens)
 
     # Generate Abstract Syntax Tree for Arithmetic Expression
-    parse_result = parser.arith_exp_parser()
+    parse_result = parser.parse_tokens()
 
     syntax_error = parse_result.error
     abstract_syntax_tree_root = parse_result.node

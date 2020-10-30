@@ -92,6 +92,22 @@ class Interpreter:
             bin_op_result_node, runtime_error = left_node.divided_by(right_node)
         elif bin_op_node.op_token.type == TT_POW:
             bin_op_result_node, runtime_error = left_node.raised_to(right_node)
+        elif bin_op_node.op_token.type == TT_EE:
+            bin_op_result_node, runtime_error = left_node.get_comparison_eq(right_node)
+        elif bin_op_node.op_token.type == TT_GTE:
+            bin_op_result_node, runtime_error = left_node.get_comparison_gte(right_node)
+        elif bin_op_node.op_token.type == TT_LTE:
+            bin_op_result_node, runtime_error = left_node.get_comparison_lte(right_node)
+        elif bin_op_node.op_token.type == TT_GT:
+            bin_op_result_node, runtime_error = left_node.get_comparison_gt(right_node)
+        elif bin_op_node.op_token.type == TT_LT:
+            bin_op_result_node, runtime_error = left_node.get_comparison_lt(right_node)
+        elif bin_op_node.op_token.type == TT_NE:
+            bin_op_result_node, runtime_error = left_node.get_comparison_ne(right_node)
+        elif bin_op_node.op_token.type == TT_KEYWORD and bin_op_node.op_token.value == 'AND':
+            bin_op_result_node, runtime_error = left_node.anded_by(right_node)
+        elif bin_op_node.op_token.type == TT_KEYWORD and bin_op_node.op_token.value == 'OR':
+            bin_op_result_node, runtime_error = left_node.ored_by(right_node)
 
         if runtime_error:
             return runtime_result.failure(error=runtime_error)
@@ -118,6 +134,8 @@ class Interpreter:
 
         if unary_node.op_token.type == TT_MINUS:  # -
             number, runtime_error = number.multiplied_by(Number(-1))  # -4 = -1*4
+        elif unary_node.op_token.type == TT_KEYWORD and unary_node.op_token.value == 'NOT':
+            number, runtime_error = number.notted()
 
         if runtime_error:
             return runtime_result.failure(error=runtime_error)

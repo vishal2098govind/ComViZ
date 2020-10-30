@@ -19,7 +19,16 @@ TT_POW = '^'
 TT_KEYWORD = 'KEYWORD'
 TT_EQ = '='
 TT_IDENTIFIER = 'IDENTIFIER'
+TT_EE = '=='
+TT_NE = '!='
+TT_LT = '<'
+TT_GT = '>'
+TT_LTE = '<='
+TT_GTE = '>='
 
 KEYWORDS = [
-    "VAR"
+    "VAR",
+    "OR",
+    "NOT",
+    "AND"
 ]

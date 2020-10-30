@@ -7,7 +7,7 @@ trace = []
 def pre_order(node, parent=None):
     if node:
         if type(node).__name__ == 'BinaryOperationNode':
-            root = AnyNode(name=node, parent=parent)
+            root = AnyNode(name=node.op_token.value, parent=parent)
 
             trace.append(root)
             # visualize_ast(trace[0])
